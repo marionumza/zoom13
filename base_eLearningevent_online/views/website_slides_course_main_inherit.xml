@@ -129,7 +129,7 @@
         </template>
 
 
-        <!-- <template id="registration_ticket_inherit" name="Extend" inherit_id="website_event.ticket">
+        <template id="registration_ticket_inherit" name="Extend" inherit_id="website_event.ticket">
             <xpath expr="//div[@class='col-lg-4 pt-3 pt-lg-0 pl-2 pl-lg-0']" position="attributes">
                 <attribute name="t-if" add="not event.is_elearning_event" />
             </xpath>
@@ -139,7 +139,7 @@
                 <attribute name="t-if" add="not event.is_elearning_event" />
             </xpath>
 
-        </template> -->
+        </template>
 
 
     </data>

@@ -6,8 +6,9 @@
       <field name="model">event.event</field>
       <field name="inherit_id" ref="event.view_event_form" />
       <field name="arch" type="xml">
-        <xpath expr="//field[@name='stage_id']" position="before">
-        <!-- <xpath expr="//button[@name='button_done']" position="before"> -->
+
+
+        <xpath expr="//button[@name='button_done']" position="before">
           <field name="is_meeting_active" invisible="1"/>
           <field name="is_online" invisible="1"/>
 

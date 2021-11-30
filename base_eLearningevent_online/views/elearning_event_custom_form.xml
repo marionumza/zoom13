@@ -13,7 +13,7 @@
           <field name="date_begin" />
           <field name="date_end" />
           <field name="user_id" />
-          <field name="stage_id" />
+          <field name="state" />
           <field name="is_published" />
           <field name="is_meeting_active" string="Ongoing" />
           <field name="message_needaction" invisible="1" />
@@ -29,21 +29,21 @@
       <field name="arch" type="xml">
         <form string="Class Event">
           <header>
-            <button string="Confirm" name="button_confirm" stage_ids="draft" type="object" class="oe_highlight" groups="base.group_user" />
+            <button string="Confirm" name="button_confirm" states="draft" type="object" class="oe_highlight" groups="base.group_user" />
 
-            <button string="Close Online Event" confirm="Are you sure you want to close Online Event ?" attrs="{'invisible': ['|',('is_meeting_active', '=', False)]}" name="button_done" stage_ids="confirm,done" type="object" class="oe_highlight" groups="base.group_user" />
+            <button string="Close Online Event" confirm="Are you sure you want to close Online Event ?" attrs="{'invisible': ['|',('is_meeting_active', '=', False)]}" name="button_done" states="confirm,done" type="object" class="oe_highlight" groups="base.group_user" />
 
-            <button string="Close" attrs="{'invisible': ['|',('is_elearning_event', '=', True)]}" name="button_done" stage_ids="confirm" type="object" class="oe_highlight" groups="base.group_user" />
+            <button string="Close" attrs="{'invisible': ['|',('is_elearning_event', '=', True)]}" name="button_done" states="confirm" type="object" class="oe_highlight" groups="base.group_user" />
 
             <button string="Initiate Class" name="initiate_elearning_class_event" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', ('is_meeting_active', '!=', False),
-               ('is_elearning_event', '!=', True), ('stage_id', 'not in', ['confirm','done',''] )]}" />
+               ('is_elearning_event', '!=', True), ('state', 'not in', ['confirm','done',''] )]}" />
 
-            <button string="Set To Draft" name="button_draft" stage_ids="cancel,done" type="object" groups="base.group_user" />
+            <button string="Set To Draft" name="button_draft" states="cancel,done" type="object" groups="base.group_user" />
 
-            <button string="Cancel " name="button_cancel" stage_ids="draft,confirm" type="object" groups="base.group_user" attrs="{'invisible': ['|', ('seats_expected', '!=', 0)]}" />
+            <button string="Cancel " name="button_cancel" states="draft,confirm" type="object" groups="base.group_user" attrs="{'invisible': ['|', ('seats_expected', '!=', 0)]}" />
 
-            <button string="Cancel " name="button_cancel" stage_ids="draft,confirm" type="object" groups="base.group_user" confirm="Are you sure you want to cancel this event? All the linked attendees will be cancelled as well." />
-            <field name="stage_id" widget="statusbar" statusbar_visible="draft,confirm,done" />
+            <button string="Cancel " name="button_cancel" states="draft,confirm" type="object" groups="base.group_user" confirm="Are you sure you want to cancel this event? All the linked attendees will be cancelled as well." />
+            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done" />
             <field name="seats_expected" invisible='1' />
 
           </header>
