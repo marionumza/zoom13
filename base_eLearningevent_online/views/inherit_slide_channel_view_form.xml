@@ -1,0 +1,64 @@
+<odoo>
+  <data>
+
+
+    <!-- <<cClassrom action-evl_ -->
+
+
+    <record model="ir.actions.act_window" id="event_Class_act_window">
+      <field name="name">Class Events</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">event.event</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{
+            'default_slide_channel_id': active_id,
+            'default_is_online': True,
+            'default_is_elearning_event': True,
+        }</field>
+      <field name="view_ids" eval="
+          [
+          (5, 0, 0),      
+          (0, 0, {'view_mode': 'tree', 'view_id': ref('online_event_event_tree')}),
+          (0, 0, {'view_mode': 'form', 'view_id': ref('view_event_form_zoom')}),
+
+          ]" />
+      <field name="domain">[('slide_channel_id', '=', active_id)]</field>
+    </record>
+
+    <!-- (0, 0, {'view_mode': 'form', 'view_id': ref('view_event_form_zoom')}) -->
+
+    <record id="view_slide_channel_form_extended" model="ir.ui.view">
+      <field name="name">slide.channel.view.form.extended</field>
+      <field name="model">slide.channel</field>
+      <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="before">
+          <field name="event_event_ids" invisible="1" widget="many2many_tags" placeholder="Events" />
+          <field name="online_class" invisible="1" />
+          <br />
+        </xpath>
+
+        <xpath expr="//field[@name='channel_type']" position="before">
+          <field name="online_class" invisible="0" />
+          <field name="web_session_type" attrs="{'invisible': [('online_class', '=', False)]}" />
+          <br />
+        </xpath>
+
+        <xpath expr="//sheet//div" position="inside">
+          <button attrs="{'invisible': [('online_class', '=', False)]}" type="action" name="%(event_Class_act_window)d" class="oe_stat_button" icon="fa-video-camera">
+            <div class="o_field_widget o_stat_info">
+              <span class="o_stat_value">
+                <field name="lec_count" nolabel="1" />
+              </span>
+              <span name="total_slides_label" class="o_stat_text"> Lectures</span>
+            </div>
+          </button>
+        </xpath>
+
+
+      </field>
+    </record>
+
+
+  </data>
+</odoo>

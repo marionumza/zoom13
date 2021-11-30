@@ -1,0 +1,142 @@
+<odoo>
+  <data>
+
+    <!-- <<zoom event tree  -->
+
+
+    <record model="ir.ui.view" id="online_event_event_tree">
+      <field name="name">event.event.tree</field>
+      <field name="model">event.event</field>
+      <field name="arch" type="xml">
+        <tree string="Class" decoration-bf="message_needaction==True">
+          <field name="name" />
+          <field name="date_begin" />
+          <field name="date_end" />
+          <field name="user_id" />
+          <field name="stage_id" />
+          <field name="is_published" />
+          <field name="is_meeting_active" string="Ongoing" />
+          <field name="message_needaction" invisible="1" />
+          <field name="activity_exception_decoration" widget="activity_exception" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- <<change the form view  -->
+    <record model="ir.ui.view" id="view_event_form_zoom">
+      <field name="name">event.event.form.evl</field>
+      <field name="model">event.event</field>
+      <field name="arch" type="xml">
+        <form string="Class Event">
+          <header>
+            <button string="Confirm" name="button_confirm" stage_ids="draft" type="object" class="oe_highlight" groups="base.group_user" />
+
+            <button string="Close Online Event" confirm="Are you sure you want to close Online Event ?" attrs="{'invisible': ['|',('is_meeting_active', '=', False)]}" name="button_done" stage_ids="confirm,done" type="object" class="oe_highlight" groups="base.group_user" />
+
+            <button string="Close" attrs="{'invisible': ['|',('is_elearning_event', '=', True)]}" name="button_done" stage_ids="confirm" type="object" class="oe_highlight" groups="base.group_user" />
+
+            <button string="Initiate Class" name="initiate_elearning_class_event" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', ('is_meeting_active', '!=', False),
+               ('is_elearning_event', '!=', True), ('stage_id', 'not in', ['confirm','done',''] )]}" />
+
+            <button string="Set To Draft" name="button_draft" stage_ids="cancel,done" type="object" groups="base.group_user" />
+
+            <button string="Cancel " name="button_cancel" stage_ids="draft,confirm" type="object" groups="base.group_user" attrs="{'invisible': ['|', ('seats_expected', '!=', 0)]}" />
+
+            <button string="Cancel " name="button_cancel" stage_ids="draft,confirm" type="object" groups="base.group_user" confirm="Are you sure you want to cancel this event? All the linked attendees will be cancelled as well." />
+            <field name="stage_id" widget="statusbar" statusbar_visible="draft,confirm,done" />
+            <field name="seats_expected" invisible='1' />
+
+          </header>
+
+          <sheet>
+
+
+            <div class="oe_button_box" name="button_box" groups="base.group_user">
+              <button name="%(event.act_event_registration_from_event)d" type="action" class="oe_stat_button" icon="fa-users" help="Register with this event">
+                <field name="seats_expected" widget="statinfo" string="Attendees" />
+              </button>
+            </div>
+
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" />
+              <h1>
+                <field name="name" placeholder="Event Name" />
+              </h1>
+            </div>
+
+            <group attrs="{'invisible': ['|',('is_elearning_event', '=', False)]}" string="Event Status">
+              <group>
+                <field name="is_meeting_active" readonly="1" string="Initiated" />
+                <field name="is_elearning_event" readonly="1" string="eLearning Event" />
+                <field name="is_published" readonly="1" string="Published" />
+                <field name="meeting_id" readonly="1" invisible="0" string="Meeting Id" />
+                <field name="temp_key" readonly="1" invisible="1" />
+              </group>
+            </group>
+
+            <group attrs="{'invisible': ['|',('is_elearning_event', '=', False)]}" string="Credentials">
+              <group>
+                <field name="moderator_password" attrs="{'required': ['|',('is_elearning_event', '=', False)]}" />
+                <field name="is_online" readonly="1" invisible="0" />
+
+              </group>
+            </group>
+
+            <group string="eLearning Event">
+
+              <group>
+                <field name="active" invisible="1" />
+                <field name="slide_channel_id" />
+                <field name="organizer_id" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="user_id" />
+              </group>
+
+              <group>
+                <field name="event_type_id" options="{'no_create':True}" />
+                <label for="twitter_hashtag" />
+                <div>
+                  <span class="oe_inline"># </span>
+                  <field name="twitter_hashtag" nolabel="1" class="oe_inline" />
+                </div>
+              </group>
+
+              <group>
+                <label for="date_begin" string="Date" />
+                <div class="o_row">
+                  <field name="date_begin" widget="daterange" nolabel="1" class="oe_inline" options="{'related_end_date': 'date_end'}" />
+                  <i class="fa fa-long-arrow-right mx-2" aria-label="Arrow icon" title="Arrow" />
+                  <field name="date_end" widget="daterange" nolabel="1" class="oe_inline" options="{'related_start_date': 'date_begin'}" />
+                </div>
+              </group>
+
+            </group>
+
+            <notebook>
+              <page string="Communication" name="event_communication">
+                <field name="event_mail_ids">
+                  <tree string="Communication" editable="bottom">
+                    <field name="sequence" widget="handle" />
+                    <field name="notification_type" invisible="1" />
+                    <field name="template_id" attrs="{'required': [('notification_type', '=', 'mail')]}" />
+                    <field name="interval_nbr" attrs="{'readonly':[('interval_unit','=','now')]}" />
+                    <field name="interval_unit" />
+                    <field name="interval_type" />
+                    <field name="done" />
+                  </tree>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+            <field name="activity_ids" widget="mail_activity" />
+            <field name="message_ids" widget="mail_thread" />
+          </div>
+        </form>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>

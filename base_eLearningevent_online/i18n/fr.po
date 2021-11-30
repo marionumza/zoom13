@@ -1,0 +1,230 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* base_eLearningevent_online
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-17 09:39+0000\n"
+"PO-Revision-Date: 2020-12-17 09:39+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.course_main_inherit
+msgid ""
+"<i class=\"fa fa-home\"/>\n"
+"                                        Course"
+msgstr "Cours"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.course_main_inherit
+msgid ""
+"<i/>\n"
+"                                        Live Sessions"
+msgstr ""
+"<i/>\n"
+"                                        Sessions en direct"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_slide_channel_form_extended
+msgid "<span name=\"total_slides_label\" class=\"o_stat_text\"> Lectures</span>"
+msgstr "<span name=\"total_slides_label\" class=\"o_stat_text\"> Conférences</span>"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid ""
+"Are you sure you want to cancel this event? All the linked attendees will be"
+" cancelled as well."
+msgstr "Etes-vous sûr que vous voulez annuler cet événement? Tous les participants associés seront "
+"annulé aussi."
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Are you sure you want to close Online Event ?"
+msgstr "Voulez-vous vraiment fermer l'événement en ligne?"
+
+#. module: base_event_online
+#: model_terms:ir.ui.view,arch_db:base_event_online.event_description_full_inherit
+#: model_terms:ir.ui.view,arch_db:base_event_online.registration_template_inherit_zoom
+msgid "Join As Moderator"
+msgstr "Rejoindre en tant que modérateur"
+
+#. module: base_event_online
+#: model_terms:ir.ui.view,arch_db:base_event_online.view_event_registration_form_inherit
+msgid "Join Class"
+msgstr "Rejoindre la classe"
+
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Attendees"
+msgstr "Participantes"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: base_eLearningevent_online
+#: model:ir.model,name:base_eLearningevent_online.model_slide_channel_partner
+msgid "Channel / Partners (Members)"
+msgstr "Canal / Partenaires (Membres)"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.online_event_event_tree
+msgid "Class"
+msgstr "Classe"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Class Event"
+msgstr "Événement de classe"
+
+#. module: base_eLearningevent_online
+#: model:ir.actions.act_window,name:base_eLearningevent_online.event_Class_act_window
+msgid "Class Events"
+msgstr "Classe Events"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Close"
+msgstr "Fermer"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Close Online Event"
+msgstr "Fermer l'événement en ligne"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Communication"
+msgstr "la communication"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Confirm"
+msgstr "Confirmer"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Credentials"
+msgstr "Identifiants"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Date"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model:ir.model,name:base_eLearningevent_online.model_event_event
+msgid "Event"
+msgstr "Événement"
+
+#. module: base_eLearningevent_online
+#: model:ir.model.fields,field_description:base_eLearningevent_online.field_slide_channel__event_event_ids
+msgid "Event Event"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Event Name"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Event Status"
+msgstr "Statut de l'événement"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_slide_channel_form_extended
+msgid "Events"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Initiate Class"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Initiated"
+msgstr "Initiée"
+
+#. module: base_eLearningevent_online
+#: model:ir.model.fields,field_description:base_eLearningevent_online.field_slide_channel__lec_count
+msgid "Lec Count"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Meeting Id"
+msgstr "ID de la Meeting"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.online_event_event_tree
+msgid "Ongoing"
+msgstr "En cours"
+
+#. module: base_eLearningevent_online
+#: model:ir.model.fields,field_description:base_eLearningevent_online.field_slide_channel__online_class
+msgid "Online Class"
+msgstr "Cours en ligne"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.elearning_event_lists
+msgid "Online Classes"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Published"
+msgstr "Publié"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Register with this event"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.course_main_inherit
+msgid "Review"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "Set To Draft"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model:ir.model,name:base_eLearningevent_online.model_slide_channel
+#: model:ir.model.fields,field_description:base_eLearningevent_online.field_event_event__slide_channel_id
+msgid "Slide Channel"
+msgstr "Canal de Diapositive"
+
+#. module: base_eLearningevent_online
+#: model:ir.model.fields,field_description:base_eLearningevent_online.field_slide_channel__web_session_type
+msgid "Web Session"
+msgstr "Session Web"
+
+#. module: base_eLearningevent_online
+#: model_terms:ir.ui.view,arch_db:base_eLearningevent_online.view_event_form_zoom
+msgid "eLearning Event"
+msgstr ""
+
+#. module: base_eLearningevent_online
+#: model:ir.model.fields,field_description:base_eLearningevent_online.field_event_event__is_elearning_event
+msgid "is_elearnig_event"
+msgstr ""

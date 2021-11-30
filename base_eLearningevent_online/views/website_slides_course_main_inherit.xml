@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- eLearning event in website looping -->
+        <template id="elearning_event_lists" name="E-Learning Course content: list">
+            <div class="mb-5 o_wslides_slides_list" t-att-data-channel-id="channel.id">
+
+                <ul class="o_wslides_js_slides_list_container list-unstyled">
+                    <t t-set="j" t-value="0" />
+                    <t t-foreach="channel.online_class" t-as="category">
+
+                        <li t-att-class="'o_wslides_slide_list_category o_wslides_js_list_item mb-2' if category_id else 'mt-4'" t-att-data-slide-id="category_id" t-att-data-category-id="category_id">
+
+                            <ul>
+                                <h3>
+                                Online Classes
+                                </h3>
+
+                                <t t-set="j" t-value="j+1" />
+
+                                <t t-foreach="channel.sudo().event_event_ids" t-as="event">
+                                    <li t-if="event.is_published" t-att-index="j" t-att-data-slide-id="event.id" t-att-data-category-id="category_id" t-attf-class="o_wslides_slides_list_slide o_wslides_js_list_item bg-white-50 border-top-0 d-flex align-items-center pl-2 #{'py-1 pr-2' if not channel.can_upload else ''}">
+                                        <div class="text-truncate mr-auto">
+                                            <a class="o_wslides_js_slides_list_slide_link" target="_blank" t-attf-href="/event/#{slug(event)}">
+                                                <span t-field="event.sudo().name" />
+                                            </a>
+                                        </div>
+
+                                        <div t-if="event.is_meeting_active" class="pt-2 pb-2 border-left ml-2 mr-2 pl-2 d-flex flex-row align-items-center o_wslides_slides_list_slide_controls">
+                                            <span class="d-none d-md-flex">
+                                                <a class="px-2 o_text_link text-primary">
+                                                    <i class="fa fa-refresh fa-spin fa-2x fa-fw" style="color: #51cf66;"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+
+                                        <div class="pt-2 pb-2 border-left ml-2 mr-2 pl-2 d-flex flex-row align-items-center o_wslides_slides_list_slide_controls">
+                                            <span class="d-none d-md-flex">
+                                                <a class="px-2 o_text_link text-primary">
+                                                    <span t-field="event.with_context(tz=event.date_tz).date_begin" t-options="{ 'format': 'medium'}" />
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </li>
+                                    <t t-set="j" t-value="j+1" />
+                                </t>
+
+                            </ul>
+                        </li>
+                    </t>
+
+
+                </ul>
+
+            </div>
+        </template>
+
+        <!-- overriding main template for online event listing in eLearning Website View  -->
+        <template id="course_main_inherit" name="Extend" inherit_id="website_slides.course_main">
+
+            <xpath expr="//div[@class='o_wslides_course_main']/div[@class='container']" position="replace">
+                <div t-if="channel.channel_type == 'training'" class="container">
+                    <div class="row">
+                        <!-- Training Sidebar -->
+                        <div class="col-12 col-md-4 col-lg-3 mt-3 mt-md-0">
+                            <t t-call="website_slides.course_sidebar" />
+                        </div>
+
+                        <!-- Training Content -->
+                        <div class="col-12 col-md-8 col-lg-9">
+                            <ul class="nav nav-tabs o_wslides_nav_tabs flex-nowrap" role="tablist" id="profile_extra_info_tablist">
+                                <li class="nav-item o_wslides_course_header_nav_home_training">
+                                    <a t-att-class="'nav-link %s' % ('active' if active_tab == 'home' else '')" id="home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" t-att-aria-selected="'true' if active_tab == 'home' else 'false'">
+                                        <i class="fa fa-home" />
+                                        Course
+                                    </a>
+                                </li>
+                                <li t-if="channel.allow_comment" class="nav-item">
+                                    <a t-att-class="'nav-link %s' % ('active' if active_tab == 'review' else '')" id="review-tab" data-toggle="pill" href="#review" role="tab" aria-controls="review" t-att-aria-selected="'true' if active_tab == 'review' else 'false'">
+                                        Review
+                                    </a>
+                                </li>
+
+
+                                <!-- "not channel.is_member -->
+
+                                <li class="nav-item o_wslides_course_header_nav_event">
+                                    <!-- t-if="channel.allow_comment" -->
+                                    <a t-if="channel.is_member" t-att-class="'nav-link %s' % ('active' if active_tab == 'event' else '')" id="event-tab" data-toggle="pill" href="#event" role="tab" aria-controls="event" t-att-aria-selected="'true' if active_tab == 'event' else 'false'">
+                                        <i />
+                                        Live Sessions
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content py-4 o_wslides_tabs_content mb-4" id="courseMainTabContent">
+
+                                <div t-att-class="'tab-pane fade %s' % ('show active' if active_tab == 'home' else '')" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <t t-if="channel.channel_type == 'training'" t-call="website_slides.course_slides_list" />
+                                </div>
+
+                                <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+
+                                <div t-att-class="'tab-pane fade %s' % ('show active' if active_tab == 'event' else '')" id="event" role="tabpanel" aria-labelledby="event-tab">
+                                    <t t-if="channel.online_class" t-call="base_eLearningevent_online.elearning_event_lists" />
+                                </div>
+
+                                <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> -->
+
+
+                                <div t-if="channel.allow_comment" t-att-class="'tab-pane fade %s' % ('show active' if active_tab == 'review' else '')" id="review" role="tabpanel" aria-labelledby="review-tab">
+                                    <t t-call="portal.message_thread">
+                                        <t t-set="object" t-value="channel" />
+                                        <t t-set="hash" t-value="message_post_hash" />
+                                        <t t-set="pid" t-value="message_post_pid" />
+                                        <t t-set="display_rating" t-value="True" />
+                                        <t t-set="disable_composer" t-value="True" />
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+
+        </template>
+
+
+        <!-- <template id="registration_ticket_inherit" name="Extend" inherit_id="website_event.ticket">
+            <xpath expr="//div[@class='col-lg-4 pt-3 pt-lg-0 pl-2 pl-lg-0']" position="attributes">
+                <attribute name="t-if" add="not event.is_elearning_event" />
+            </xpath>
+
+            
+            <xpath   expr="//div[hasclass('ml-auto')]"  position="attributes">
+                <attribute name="t-if" add="not event.is_elearning_event" />
+            </xpath>
+
+        </template> -->
+
+
+    </data>
+</odoo>
