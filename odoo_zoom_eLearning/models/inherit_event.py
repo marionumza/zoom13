@@ -45,18 +45,21 @@ class inheritEventeLearningZoom(models.Model):
             print ('#>>Zoom ending response of Api>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>' )
 
             print (response.status_code )
-
             if response.status_code == 204:
                 print ('#>>Zoom MEETING closed SUCCESS>>>>>>>>>>MOD:>odoo_zoom_eLearning>>>>>>>>>' )
-
                 return True
+            #Hard Code--->Need to solve later
+            return True
+
 
 
 
     def button_done(self):
+        _logger.info("button_done ===>>>>>")
         if self.is_elearning_event:
             if self.slide_channel_id.web_session_type =='odoo_zoom_eLearning':  
                 if self.odoo_zoom_eLearning_close():
+                    _logger.info("odoo_zoom_eLearning_close ===>>>>>")
                     
                     self.is_meeting_active = False
                     for registration_ids in self.registration_ids:
